@@ -153,11 +153,12 @@
             url : "/leave/audit", //审核URL
             data : data.field ,
             type : "post" ,
+            dataType: "json",
             success: function (json) {
                 //关闭所有layui对话框
                 layui.layer.closeAll();
                 //显示处理结果
-                if(json.code == "ok"){
+                if(json.code == "0"){
                     swal({
                         type: 'success',
                         html: "<h2>请假已审批完毕</h2>",
@@ -168,7 +169,7 @@
                 }else{
                     swal({
                         type: 'warning',
-                        html: "<h2>" + json.msg + "</h2>",
+                        html: "<h2>" + json.message + "</h2>",
                         confirmButtonText: "确定"
                     });
                 }

@@ -7,6 +7,8 @@ import org.junit.Test;
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -34,6 +36,16 @@ public class LeaveFormDaoTest {
             leaveForm.setState("processing");//当前状态
             dao.insert(leaveForm);
             return null;
+        });
+    }
+
+    @Test
+    public void testSelectByParams(){
+        MybatisUtils.executeUpdate(sqlSession -> {
+            LeaveFormDao dao= sqlSession.getMapper(LeaveFormDao.class);
+            List<Map> list = dao.selectByParams("process",2l);
+            System.out.println(list);
+            return list;
         });
     }
 }

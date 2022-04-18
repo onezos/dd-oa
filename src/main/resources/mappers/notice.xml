@@ -13,4 +13,8 @@
         INSERT INTO sys_notice(receiver_id, content, create_time)
         VALUES (#{receiverId}, #{content}, #{createTime})
     </insert>
+
+    <select id="selectByReceiverId" parameterType="Long" resultType="com.ddnotes.oa.entity.Notice">
+        select * from sys_notice where receiver_id = #{value} order by create_time desc limit 0,100
+    </select>
 </mapper>

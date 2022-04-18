@@ -84,5 +84,27 @@ public class LeaveFormServiceTest {
         LeaveForm savedForm = leaveFormService.createLeaveForm(form);
         System.out.println(savedForm.getFormId());
     }
+    /**
+     * 请假3天以上,部门经理审批通过
+     */
+    @Test
+    public void audit1(){
+        leaveFormService.audit(31l,2l,"approved","祝早日康复");
+    }
 
+    /**
+     * 请假3天以上,部门经理审批驳回
+     */
+    @Test
+    public void audit2(){
+        leaveFormService.audit(32l,2l,"refused","工期紧张,请勿拖延");
+    }
+
+    /**
+     * 部门经理请假,总经理审批通过
+     */
+    @Test
+    public void audit3(){
+        leaveFormService.audit(33l,1l,"approved","同意");
+    }
 }

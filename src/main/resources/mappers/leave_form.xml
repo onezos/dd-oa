@@ -13,4 +13,23 @@
         INSERT INTO adm_leave_form(employee_id, form_type, start_time, end_time, reason, create_time, state)
         VALUES (#{employeeId}, #{formType}, #{startTime}, #{endTime}, #{reason}, #{createTime}, #{state})
     </insert>
+    <select id="selectByParams" parameterType="java.util.Map" resultType="java.util.Map">
+        select f.*,e.name,d.*
+        from
+            adm_leave_form f,adm_process_flow pf,
+            adm_employee e,adm_department d
+        where
+            f.form_id = pf.form_id
+          and f.employee_id = e.employee_id
+          and e.department_id = d.department_id
+          and pf.state = #{pf_state}
+          and pf.operator_id = #{pf_operator_id}
+    </select>
+    <select id="selectById" parameterType="Long" resultType="com.ddnotes.oa.entity.LeaveForm">
+        select * from adm_leave_form where form_id = #{value}
+    </select>
+
+    <update id="update" parameterType="com.ddnotes.oa.entity.LeaveForm">
+        UPDATE adm_leave_form SET employee_id = #{employeeId} , form_type = #{formType}, start_time = #{startTime}, end_time = #{endTime}, reason = #{reason}, state = #{state} ,create_time = #{createTime} WHERE form_id = #{formId}
+    </update>
 </mapper>
