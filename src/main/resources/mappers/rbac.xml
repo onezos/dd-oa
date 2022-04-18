@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rbacmapper">
+    <!-- 获取用户编号对应的功能列表-->
+    <select id="selectNodeByUserId" parameterType="Long" resultType="com.ddnotes.oa.entity.Node">
+        select distinct n.*
+        from
+        sys_role_user ru, sys_role_node rn, sys_node n
+        where
+        ru.role_id = rn.role_id and user_id = #{value} and rn.node_id = n.node_id
+        order by n.node_code
+    </select>
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace与包名一致-->
+<mapper namespace="com.ddnotes.oa.dao.NoticeDao">
+    <!--id与方法名对应
+    parameterType与方法参数类型对应
+    resultType与方法返回类型对应
+     -->
+    <insert id="insert" parameterType="com.ddnotes.oa.entity.Notice"
+            useGeneratedKeys="true" keyProperty="noticeId" keyColumn="notice_id">
+        INSERT INTO sys_notice(receiver_id, content, create_time)
+        VALUES (#{receiverId}, #{content}, #{createTime})
+    </insert>
+</mapper>
