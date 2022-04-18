@@ -1,3 +1,5 @@
+使用传统servlet技术开发
+
 首先修改`mysql.properties`里数据库的`url`，`username`，`password`
 
 ![image-20220418145650944](img/image-20220418145650944.png)
